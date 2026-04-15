@@ -23,27 +23,20 @@ registerForm.addEventListener('submit', async(event)=> {
  }
 
  try {
-    let users = JSON.parse(localStorage.getItem('users')) || []; 
-
-    // check if username or email already exist in local db
-    if (users.some(user => user.username === username || user.email === email)) {
-      registerMessage.textContent = "Username or email already exists.";
-      registerMessage.classList.remove("text-green-500");
-      registerMessage.classList.add("text-red-500");
-      return;
+    // if user already exists
+    if(find(username)){
+        registerMessage.textContent = "Username or email already exists.";
+        registerMessage.classList.remove("text-green-500");
+        registerMessage.classList.add("text-red-500");
+        return;
     }
-
     // if first user to register -> becomes admin
-    if (users.length==0){
-        users.push({username,email,password,dob,"isAdmin":true});
-        localStorage.setItem('users', JSON.stringify(users));
-    } else {
-        users.push({username,email,password,dob,"isAdmin":false});
-        localStorage.setItem('users', JSON.stringify(users));
-    }
+    if (users.length==0) isAdmin = true  
+    
+    add(username,email,password,dob,isAdmin)
 
     // show success
-    registerMessage.textContent = "Registration successful! (Data stored in local storage)";
+    registerMessage.textContent = "Registration successful!";
     registerMessage.classList.remove("text-red-500");
     registerMessage.classList.add("text-green-500");
  }catch(error){
@@ -52,6 +45,4 @@ registerForm.addEventListener('submit', async(event)=> {
     registerMessage.classList.remove("text-green-500");
     registerMessage.classList.add("text-red-500");
  } 
-
-
 })

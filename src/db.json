@@ -1,0 +1,18 @@
+{
+    "users": [
+        {
+            "username":"mhmad",
+            "email":"mhmad@gmail.com",
+            "password":"mhmad123",
+            "dob":"2001-08-13",
+            "isAdmin":true
+        },
+        {
+            "username":"ali",
+            "email":"ali@gmail.com",
+            "password":"ali123",
+            "dob":"2001-08-13",
+            "isAdmin":false
+        }
+    ]
+}

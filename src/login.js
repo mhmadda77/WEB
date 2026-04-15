@@ -7,10 +7,7 @@ loginForm.addEventListener('submit', function(event) {
     const usernameOrEmail = document.getElementById('userInput').value;
     const password = document.getElementById('passInput').value;
 
-    // get users from local db
-    let users = JSON.parse(localStorage.getItem('users')) || [];
-    // check for specific user if exists
-    let user =  users.find(u=>u.username === usernameOrEmail || u.email === usernameOrEmail);
+    let user = find(usernameOrEmail)
 
     // if user is found
     if(user != undefined){
